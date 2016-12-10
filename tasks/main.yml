@@ -15,6 +15,7 @@
 - name: "Set correct apache_version"
   set_fact:
     apache_version: "{{ apachectl_version.stdout }}"
+  when: zabbix_vhost and zabbix_web
 
 - name: "Install the correct repository"
   include: "RedHat.yml"

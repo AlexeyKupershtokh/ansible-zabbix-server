@@ -21,25 +21,33 @@
   include: "RedHat.yml"
   when: ansible_os_family == "RedHat"
   tags:
-    - always
+    - zabbix-server
+    - init
+    - config
 
 - name: "Install the correct repository"
   include: "Debian.yml"
   when: ansible_os_family == "Debian"
   tags:
-    - always
+    - zabbix-server
+    - init
+    - config
 
 - name: "Installing the postgresql database"
   include: "postgresql.yml"
   when: database_type_long == "postgresql"
   tags:
-    - always
+    - zabbix-server
+    - init
+    - config
 
 - name: "Installing the mysql database"
   include: "mysql.yml"
   when: database_type_long == "mysql"
   tags:
-    - always
+    - zabbix-server
+    - init
+    - config
 
 - name: "Configure zabbix-server"
   template: src=zabbix_server.conf.j2
